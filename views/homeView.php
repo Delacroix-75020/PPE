@@ -3,9 +3,6 @@
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light">La Societe Filelec</h1>
         <p class="lead text-muted">Bienvenue sur la boutique de la société Filelec spécialisée dans la ventes de piéces automobiles. vous pouvez retrouvez ci dessous et dans notre catalogues des piéces de rechanges de voitures, de camion, de bus ou encore des accessoires automobiles .</p>
-        <p>
-          <a href="boutique" class="btn btn-primary my-2">Aller vers la Boutique</a>
-        </p>
       </div>
     </div>
   </section>
