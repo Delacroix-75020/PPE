@@ -21,7 +21,7 @@ if(isset($_POST['forminscription'])) {
                    if($pass == $pass2) {
                       $insertmbr = $bdd->prepare("INSERT INTO users(username, email, pass) VALUES(?, ?, ?)");
                       $insertmbr->execute(array($username, $email, $pass));
-                      $erreur = "Votre compte a bien été créé ! <a href=\"connexion\">Me connecter</a>";
+                      $erreur = "Votre compte a bien été créé !</a>";
                    } else {
                       $erreur = "Vos mots de passes ne correspondent pas !";
                    }

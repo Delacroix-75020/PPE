@@ -9,5 +9,6 @@
   $requete->bindValue(':pass', $pass, PDO::PARAM_STR);
   $requete->execute();
   return $requete->fetch();
+}
 
  ?>
