@@ -5,6 +5,7 @@
 }
 
 section {
+  position: sticky;
   width: 100%;
   display: inline-block;
   background: #ccc;
