@@ -48,7 +48,7 @@
             <p class="card-text"><?= $description ?></p>
           </div>
           <div class="card-footer">
-             <button type="button" class="btn btn-sm btn-outline-secondary">Ajouter Au panier</button>
+             <a href="panier?action=ajout&amp;l=<? $nom_produit ?>&amp;q=1&amp;p=<?= $prix ?>" onclick="shop()" class="addpanier">Ajouter au panier</a>
           </div>
         </div>
       </div>

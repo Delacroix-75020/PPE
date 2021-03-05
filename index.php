@@ -20,7 +20,7 @@ if(isset($_GET['p']))
         $page = "404";
 }
 else{
-    $page = "home";
+    $page = "connexion";
 }
 
 
