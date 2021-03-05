@@ -3,16 +3,18 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 05 mars 2021 à 15:33
+-- Généré le : sam. 06 mars 2021 à 00:36
 -- Version du serveur :  10.4.14-MariaDB
 -- Version de PHP : 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-DROP DATABASE IF EXISTS testppe;
-CREATE DATABASE testppe;
-use testppe;
+
+DROP DATABASE IF EXISTS ppe;
+CREATE DATABASE ppe;
+USE ppe;
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -20,7 +22,7 @@ use testppe;
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `testppe`
+-- Base de données : `ppe`
 --
 
 -- --------------------------------------------------------
@@ -59,26 +61,6 @@ CREATE TABLE `commande` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `formations`
---
-
-CREATE TABLE `formations` (
-  `f_num` int(11) NOT NULL,
-  `f_titre` varchar(100) NOT NULL COMMENT 'préférable de limiter à 70',
-  `f_motscles` varchar(250) NOT NULL COMMENT 'Selon les mots clés et le nom de la formation, les formations associées seront proposées'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `formations`
---
-
-INSERT INTO `formations` (`f_num`, `f_titre`, `f_motscles`) VALUES
-(25, 'ppe', 'ppe;'),
-(26, 'Forum', 'Forum;');
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `image`
 --
 
@@ -86,6 +68,14 @@ CREATE TABLE `image` (
   `id_image` int(11) NOT NULL,
   `nom_image` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `image`
+--
+
+INSERT INTO `image` (`id_image`, `nom_image`) VALUES
+(1, 'moteurAudi.jpg'),
+(2, 'retro.jpg');
 
 -- --------------------------------------------------------
 
@@ -96,10 +86,20 @@ CREATE TABLE `image` (
 CREATE TABLE `produit` (
   `id_produit` int(11) NOT NULL,
   `nom_produit` varchar(128) NOT NULL,
+  `p_motscles` varchar(280) NOT NULL,
+  `description` varchar(255) NOT NULL,
   `prix` float NOT NULL,
   `id_categorie` int(11) NOT NULL,
   `id_image` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `produit`
+--
+
+INSERT INTO `produit` (`id_produit`, `nom_produit`, `p_motscles`, `description`, `prix`, `id_categorie`, `id_image`) VALUES
+(1, 'Moteur de Voiture Audi A3', 'Moteur;Voiture;Audi;A3;', 'Ceci est un moteur blablabla ', 799, 1, 1),
+(2, 'Rétroviseur Renault ', '', 'Rétroviseur de la marque Renault avec une tes grande flexibilité ', 39, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -124,7 +124,9 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `tel`, `adresse`, `email`, `pass`, `lvl`) VALUES
 (1, 'steve', 0, '', 'stevizou@g.com', '9ce5770b3bb4b2a1d59be2d97e34379cd192299f', 1),
 (2, 'Adrien', 0, '', 'ad.dela75020@gmail.com', '4493b1a16b57a2f7a66df59c1ab825911f69562d', 0),
-(4, 'Adrien', 0, '', 'momo@yahoo.com', '52036e5a96b401419e3b870bb3859828b111afd2', 0);
+(4, 'Adrien', 0, '', 'momo@yahoo.com', '52036e5a96b401419e3b870bb3859828b111afd2', 0),
+(5, 'Adrien75020', 0, '', 'ad.delacroix@hotmail.com', '52036e5a96b401419e3b870bb3859828b111afd2', 0),
+(6, 'Adrien', 0, '', 'admin@portfolio.com', '52036e5a96b401419e3b870bb3859828b111afd2', 0);
 
 --
 -- Index pour les tables déchargées
@@ -143,12 +145,6 @@ ALTER TABLE `commande`
   ADD PRIMARY KEY (`id_commande`);
 
 --
--- Index pour la table `formations`
---
-ALTER TABLE `formations`
-  ADD PRIMARY KEY (`f_num`);
-
---
 -- Index pour la table `image`
 --
 ALTER TABLE `image`
@@ -158,6 +154,7 @@ ALTER TABLE `image`
 -- Index pour la table `produit`
 --
 ALTER TABLE `produit`
+  ADD PRIMARY KEY (`id_produit`),
   ADD KEY `id_categorie` (`id_categorie`),
   ADD KEY `id_image` (`id_image`);
 
@@ -185,22 +182,22 @@ ALTER TABLE `commande`
   MODIFY `id_commande` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `formations`
---
-ALTER TABLE `formations`
-  MODIFY `f_num` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=337;
-
---
 -- AUTO_INCREMENT pour la table `image`
 --
 ALTER TABLE `image`
-  MODIFY `id_image` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_image` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pour la table `produit`
+--
+ALTER TABLE `produit`
+  MODIFY `id_produit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Contraintes pour les tables déchargées

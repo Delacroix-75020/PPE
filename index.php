@@ -17,10 +17,10 @@ if(isset($_GET['p']))
     if(file_exists("controllers/".$_GET['p']."Controller.php"))//Verifie si la page demandée existe
         $page = $_GET['p'];
     else//redirection vers page 404
-        header("location: error/404.php");
+        $page = "404";
 }
 else{
-    $page = "home";
+    $page = "connexion";
 }
 
 
