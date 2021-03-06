@@ -1,3 +1,7 @@
+<?php
+
+include_once("fonction/fonctions-panier.php");
+?>
 <div class="box-sizing: border-box;">
 
 <!-- Page Content -->
@@ -9,7 +13,7 @@
 
     <h1 class="my-4">La Boutique</h1>
     <div class="list-group">
-      <a href="#" class="list-group-item">Voiture</a>
+      <a href="Voiture" class="list-group-item">Voiture</a>
       <a href="#" class="list-group-item">Bus</a>
       <a href="#" class="list-group-item">Accessoire automobile</a>
       <a href="#" class="list-group-item">Camion</a>
@@ -39,10 +43,10 @@
 
       <div class="col-lg-4 col-md-6 mb-4">
         <div class="card h-100" id="<?= $id_produit ?>">
-          <a href="#"><img class="card-img-top" src="img/<?= $nom_image ?>"alt=""></a>
+          <a href="Moteur-de-Voiture-Audi-A3"><img class="card-img-top" src="img/<?= $nom_image ?>"alt=""></a>
           <div class="card-body">
             <h4 class="card-title">
-              <a href="#"><?= $nom_produit ?></a>
+              <a href="Moteur-de-Voiture-Audi-A3"><?= $nom_produit ?></a>
             </h4>
             <h5><?= $prix ?>$</h5>
             <p class="card-text"><?= $description ?></p>
