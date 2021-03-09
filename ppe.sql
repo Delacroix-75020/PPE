@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  ven. 05 mars 2021 à 18:30
--- Version du serveur :  10.4.8-MariaDB
--- Version de PHP :  7.3.10
+-- Généré le : sam. 06 mars 2021 à 00:36
+-- Version du serveur :  10.4.14-MariaDB
+-- Version de PHP : 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -23,7 +22,7 @@ USE ppe;
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `ppe`
+-- Base de données : `ppe`
 --
 
 -- --------------------------------------------------------
@@ -87,6 +86,7 @@ INSERT INTO `image` (`id_image`, `nom_image`) VALUES
 CREATE TABLE `produit` (
   `id_produit` int(11) NOT NULL,
   `nom_produit` varchar(128) NOT NULL,
+  `p_motscles` varchar(280) NOT NULL,
   `description` varchar(255) NOT NULL,
   `prix` float NOT NULL,
   `id_categorie` int(11) NOT NULL,
@@ -97,9 +97,9 @@ CREATE TABLE `produit` (
 -- Déchargement des données de la table `produit`
 --
 
-INSERT INTO `produit` (`id_produit`, `nom_produit`, `description`, `prix`, `id_categorie`, `id_image`) VALUES
-(1, 'Moteur Audi', 'Ceci est un moteur blablabla ', 799, 1, 1),
-(2, 'Rétroviseur Renault ', 'Rétroviseur de la marque Renault avec une tes grande flexibilité ', 39, 2, 2);
+INSERT INTO `produit` (`id_produit`, `nom_produit`, `p_motscles`, `description`, `prix`, `id_categorie`, `id_image`) VALUES
+(1, 'Moteur de Voiture Audi A3', 'Moteur;Voiture;Audi;A3;', 'Ceci est un moteur blablabla ', 799, 1, 1),
+(2, 'Rétroviseur Renault ', '', 'Rétroviseur de la marque Renault avec une tes grande flexibilité ', 39, 2, 2);
 
 -- --------------------------------------------------------
 
