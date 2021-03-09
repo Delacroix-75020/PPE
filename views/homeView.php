@@ -192,7 +192,7 @@ include("commun/connexion.php");
       
         <div class="warp">
           <div class="titre_centre">
-          <form id="formulaire" name="formulaire" method="post" action="home">           
+          <form id="formulaire" name="formulaire" method="post" action="">           
             <div class="liste_div">
               <input type="text" id="mc" name="mc" class="searchTerm" value="Vos mots clés de recherche" onClick="this.value='';" />
             </div>

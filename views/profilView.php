@@ -38,6 +38,14 @@
 						<i class="align-middle me-1" data-feather="edit-2"></i>
 						Modifier mon mot de passe
 					</a>
+					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#edit-adresse" role="tab">
+						<i class="align-middle me-1" data-feather="edit-2"></i>
+						Modifier mon Adresse
+					</a>
+					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#edit-tel" role="tab">
+						<i class="align-middle me-1" data-feather="edit-2"></i>
+						Modifier mon Numéro de téléphone
+					</a>
 					<a class="list-group-item list-group-item-action bg-danger text-light" data-bs-toggle="list" href="#delete-compte" role="tab" style="border-color: #dc3545!important;">
 						Supprimer mon compte
 						<i class="align-middle ms-1" data-feather="delete"></i>
@@ -61,17 +69,17 @@
 						<div class="card-body">
 							<p class="text-light">
 								<i class="align-middle me-1 fas fa-fw fa-user-alt"></i>
-								<?= $_SESSION['username'] ?>
+								Votre Pseudo : <?= $_SESSION['username'] ?>
 							</p>
 
 					
 							<p class="text-light">
 								<i class="align-middle me-1 fas fa-fw fa-envelope"></i>
-								<?= $_SESSION['email'] ?></b>
+								Vore Adresse Mail : <?= $_SESSION['email'] ?></b>
 							</p>
 							<div class="d-flex justify-content-center">
 								<a class="btn btn-warning active text-dark" href="deconnexion">
-									Ce ne sont pas informations
+									Se Deconnecter
 								</a>
 							</div>
 						</div>
@@ -84,7 +92,7 @@
 						<div class="card-body">
 							<h3 class="text-center text-light">Modification du username</h3>
 							<form method="post" action="" class="mt-4">
-								<p class="fs-lg text-light">username actuel : <font color="aqua"><?= $_SESSION['username'] ?></font></p>
+								<p class="fs-lg text-light">username actuel : <font color="white"><?= $_SESSION['username'] ?></font></p>
 								<div class="mb-3">
 									<label for="username" class="form-label text-light fs-lg">Nouveau username</label>
 									<input type="text" name="username" id="username" autocomplete="off" maxlength="15" class="form-control w-50">
@@ -112,7 +120,7 @@
 						<div class="card-body">
 							<h3 class="text-center text-light">Modification de l'adresse email</h3>
 							<form method="post" action="" class="mt-4">
-								<p class="fs-lg text-light">Adresse email actuel : <font color="aqua"><?= $_SESSION['email'] ?></font></p>
+								<p class="fs-lg text-light">Adresse email actuel : <font color="white"><?= $_SESSION['email'] ?></font></p>
 								<div class="mb-3">
 									<label for="email" class="form-label text-light fs-lg">
 										Nouvelle adresse email
@@ -170,6 +178,63 @@
 						</div>
 					</div>
 				</div>
+
+								<!-- Modifier mon adresse -->
+				<div class="tab-pane fade" id="edit-adresse" role="tabpanel">
+					<div class="card reveal-1" style="background-color: #008080;">
+						<div class="card-body">
+							<h3 class="text-center text-light">Modification de l'adresse</h3>
+							<form method="post" action="" class="mt-4">
+								<p class="fs-lg text-light">Adresse actuel : <font color="white"><?= $_SESSION['adresse'] ?></font></p>
+								<div class="mb-3">
+									<label for="adresse" class="form-label text-light fs-lg">Nouvelle Adresse</label>
+									<input type="text" name="adresse" id="adresse" autocomplete="off" maxlength="150" class="form-control w-50">
+								</div>
+								<div class="mb-3">
+									<p class="text-center text-light fs-lg">
+										Vous serez déconnecté après le changement.
+									</p>
+								</div>
+								<div class="d-flex justify-content-center">
+			                        <div class="d-grid gap-2 col-12 mx-auto">
+			                            <button type="submit" name="new-adresse" class="btn btn-lg active fw-bold fs-lg mt-3" style="background-color: #00FFFF; border-color: #00FFFF; color: black;">
+											Modifier mon Adresse de Livraison
+										</button>
+			                        </div>
+			                    </div>
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<!-- Modifier mon username -->
+				<div class="tab-pane fade" id="edit-tel" role="tabpanel">
+					<div class="card reveal-1" style="background-color: #008080;">
+						<div class="card-body">
+							<h3 class="text-center text-light">Modification du numero de telephone</h3>
+							<form method="post" action="" class="mt-4">
+								<p class="fs-lg text-light">Numéro actuel : +33<font color="white"><?= $_SESSION['tel'] ?></font></p>
+								<div class="mb-3">
+									<label for="username" class="form-label text-light fs-lg">Nouveau téléphone</label>
+									<input type="text" name="username" id="username" autocomplete="off" maxlength="15" class="form-control w-50">
+								</div>
+								<div class="mb-3">
+									<p class="text-center text-light fs-lg">
+										Vous serez déconnecté après le changement.
+									</p>
+								</div>
+								<div class="d-flex justify-content-center">
+			                        <div class="d-grid gap-2 col-12 mx-auto">
+			                            <button type="submit" name="new-tel" class="btn btn-lg active fw-bold fs-lg mt-3" style="background-color: #00FFFF; border-color: #00FFFF; color: black;">
+											Modifier mon numéro
+										</button>
+			                        </div>
+			                    </div>
+							</form>
+						</div>
+					</div>
+				</div>
+
 
 				<!-- Supprimer mon compte -->
 				<div class="tab-pane fade" id="delete-compte" role="tabpanel">

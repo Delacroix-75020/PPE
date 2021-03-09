@@ -38,6 +38,43 @@ if (isset($_POST['new-email'])) {
 	}
 }
 
+// Modification de l'adresse de livraison
+if (isset($_POST['new-adresse'])) {
+    if (!empty($_POST['adresse'])) {
+        $adresse = htmlspecialchars($_POST['adresse']);
+        $requete_adresse_exist = checkAdresse($adresse);
+        if ($requete_adresse_exist) {
+            Alerts::setFlash("Cette adresse de livraison est déjà renseigné.", "warning");
+        } else {
+            $requete_update_adresse = updateAdresse($adresse);
+            unset($_SESSION['id']);
+            session_destroy();
+            header('Location: connexion');
+            exit();
+        }
+    }
+}
+
+// Modification du telephone
+if (isset($_POST['new-tel'])) {
+    if (!empty($_POST['tel'])) {
+        $tel = htmlspecialchars($_POST['tel']);
+        $requete_tel_exist = checkTel($tel);
+        if ($requete_tel_exist) {
+            Alerts::setFlash("Ce numéro est déjà utilisé.", "warning");
+        } else {
+            $requete_update_tel = updateTel($tel);
+            unset($_SESSION['id']);
+            session_destroy();
+            header('Location: connexion');
+            exit();
+        }
+    }
+}
+
+
+
+
 // Modification du mot de passe
     if(isset($_POST['newmdp1']) AND !empty($_POST['newmdp1']) AND isset($_POST['newmdp2']) AND !empty($_POST['newmdp2'])) {
     $mdp1 = sha1($_POST['newmdp1']);

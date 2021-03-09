@@ -36,6 +36,42 @@ function updateEmail($email) {
 	return $requete_update_email->execute();
 }
 
+
+function checkAdresse($adresse) {
+	global $bdd;
+	$SQL_adresse = "SELECT * FROM users WHERE adresse = :adresse";
+    $requete_adresse_exist = $bdd->prepare($SQL_adresse);
+    $requete_adresse_exist->bindParam(':adresse', $adresse, PDO::PARAM_STR);
+    $requete_adresse_exist->execute();
+    return $requete_adresse_exist->fetchAll(PDO::FETCH_OBJ);
+}
+
+function updateAdresse($adresse) {
+	global $bdd;
+	$UPDATE_adresse = "UPDATE users SET adresse = :adresse WHERE id = '".$_SESSION['id']."' ";
+	$requete_update_adresse = $bdd->prepare($UPDATE_adresse);
+	$requete_update_adresse->bindValue(':adresse', $adresse, PDO::PARAM_STR);
+	return $requete_update_adresse->execute();
+}
+
+/*** MODIFICATION DU username ***/
+function checkTel($tel) {
+	global $bdd;
+	$SQL_tel = "SELECT * FROM users WHERE tel = :tel";
+    $requete_tel_exist = $bdd->prepare($SQL_tel);
+    $requete_tel_exist->bindParam(':tel', $tel, PDO::PARAM_STR);
+    $requete_tel_exist->execute();
+    return $requete_tel_exist->fetchAll(PDO::FETCH_OBJ);
+}
+
+function updateTel($tel) {
+	global $bdd;
+	$UPDATE_tel = "UPDATE users SET tel = :tel WHERE id = '".$_SESSION['id']."' ";
+	$requete_update_tel = $bdd->prepare($UPDATE_tel);
+	$requete_update_tel->bindValue(':tel', $tel, PDO::PARAM_STR);
+	return $requete_update_tel->execute();
+}
+
 /*** MODIFICATION DU MOT DE passE ***/
 function updatepass($pass1) {
 	global $bdd;

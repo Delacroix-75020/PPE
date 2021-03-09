@@ -9,7 +9,9 @@ if(isset($_POST['forminscription'])) {
     $email2 = htmlspecialchars($_POST['email2']);
     $pass = sha1($_POST['pass']);
     $pass2 = sha1($_POST['pass2']);
-    if(!empty($_POST['username']) AND !empty($_POST['email']) AND !empty($_POST['email2']) AND !empty($_POST['pass']) AND !empty($_POST['pass2'])) {
+    $adresse = htmlspecialchars($_POST['adresse']);
+    $tel = htmlspecialchars($_POST['tel']);
+    if(!empty($_POST['username']) AND !empty($_POST['email']) AND !empty($_POST['email2']) AND !empty($_POST['pass']) AND !empty($_POST['pass2']) AND !empty($_POST['adresse']) AND !empty($_POST['tel'])) {
        $usernamelength = strlen($username);
        if($usernamelength <= 255) {
           if($email == $email2) {
@@ -19,8 +21,8 @@ if(isset($_POST['forminscription'])) {
                 $emailexist = $reqemail->rowCount();
                 if($emailexist == 0) {
                    if($pass == $pass2) {
-                      $insertmbr = $bdd->prepare("INSERT INTO users(username, email, pass) VALUES(?, ?, ?)");
-                      $insertmbr->execute(array($username, $email, $pass));
+                      $insertmbr = $bdd->prepare("INSERT INTO users(username, email, pass, adresse, tel) VALUES(?, ?, ?, ?, ?)");
+                      $insertmbr->execute(array($username, $email, $pass, $adresse, $tel));
                       $erreur = "Votre compte a bien été créé !</a>";
                    } else {
                       $erreur = "Vos mots de passes ne correspondent pas !";
