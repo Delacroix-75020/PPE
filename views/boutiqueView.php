@@ -1,6 +1,7 @@
 <?php
 
 include_once("fonction/fonctions-panier.php");
+
 ?>
 <div class="box-sizing: border-box;">
 
@@ -25,11 +26,11 @@ include_once("fonction/fonctions-panier.php");
 
                     foreach ($selproduit as $produit) {
                         
-                        //$id_produit = $produit['id_produit'];
+                        $id_produit = $produit['id_produit'];
                         $nom_produit = $produit['nom_produit'];
                         $description = $produit['description'];
                         $prix = $produit['prix'];
-                        //$id_categorie = $produit['id_categorie'];
+                       // $id_categorie = $produit['id_categorie'];
                         $nom_image = $produit['nom_image'];
                     
 
@@ -48,16 +49,20 @@ include_once("fonction/fonctions-panier.php");
             <h4 class="card-title">
               <a href="Moteur-de-Voiture-Audi-A3"><?= $nom_produit ?></a>
             </h4>
-            <h5><?= $prix ?>$</h5>
+            <h5><?= $prix ?>€</h5>
             <p class="card-text"><?= $description ?></p>
           </div>
           <div class="card-footer">
-             <a href="panier?action=ajout&amp;l=<? $nom_produit ?>&amp;q=1&amp;p=<?= $prix ?>" onclick="shop()" class="addpanier">Ajouter au panier</a>
+             <a href="panier?action=ajout&l=<?= $id_produit; ?>&q=1&p=<?= $prix; ?>" onclick="shop()" class="addpanier">Ajouter au panier</a>
           </div>
         </div>
       </div>
 <?php } ?> 
-
+<script>
+function shop() {
+ header('Location: panier');
+}
+</script>
     </div>
     <!-- /.row -->
 

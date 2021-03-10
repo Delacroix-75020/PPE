@@ -20,7 +20,7 @@ if(isset($_GET['p']))
         $page = "404";
 }
 else{
-    $page = "home";
+    $page = "connadmin";
 }
 
 
@@ -28,6 +28,6 @@ ob_start();// arrete l'affichage
     require "controllers/".$page."Controller.php";// recuperation de la page
 $content = ob_get_clean();
 
-require "template.php";
+require "template_admin.php";
 
 ?>
