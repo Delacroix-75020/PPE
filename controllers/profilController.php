@@ -41,7 +41,7 @@ if (isset($_POST['new-email'])) {
 // Modification de l'adresse de livraison
 if (isset($_POST['new-adresse'])) {
     if (!empty($_POST['adresse'])) {
-        $adresse = htmlspecialchars($_POST['adresse']);
+        $adresse = $_POST['adresse'];
         $requete_adresse_exist = checkAdresse($adresse);
         if ($requete_adresse_exist) {
             Alerts::setFlash("Cette adresse de livraison est déjà renseigné.", "warning");
