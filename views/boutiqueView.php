@@ -14,10 +14,10 @@ include_once("fonction/fonctions-panier.php");
 
     <h1 class="my-4">La Boutique</h1>
     <div class="list-group">
-      <a href="Voiture" class="list-group-item">Voiture</a>
-      <a href="#" class="list-group-item">Bus</a>
-      <a href="#" class="list-group-item">Accessoire automobile</a>
-      <a href="#" class="list-group-item">Camion</a>
+      <a href="Voiture" class="list-group-item"><img src="img/Voiture.png" >     Voiture</a>
+      <a href="#" class="list-group-item"><img src="img/Bus.png" >     Bus</a>
+      <a href="#" class="list-group-item"><img src="img/volant.png" >     Accessoire automobile</a>
+      <a href="#" class="list-group-item"><img src="img/camion.png" >     Camion</a>
     </div>
 
   </div>
