@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 06 mars 2021 à 00:36
+-- Généré le : jeu. 11 mars 2021 à 18:30
 -- Version du serveur :  10.4.14-MariaDB
 -- Version de PHP : 7.4.10
 
@@ -14,7 +14,6 @@ SET time_zone = "+00:00";
 DROP DATABASE IF EXISTS ppe;
 CREATE DATABASE ppe;
 USE ppe;
-
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -88,6 +87,7 @@ CREATE TABLE `produit` (
   `nom_produit` varchar(128) NOT NULL,
   `p_motscles` varchar(280) NOT NULL,
   `description` varchar(255) NOT NULL,
+  `qteProduit` int(6) NOT NULL,
   `prix` float NOT NULL,
   `id_categorie` int(11) NOT NULL,
   `id_image` int(11) NOT NULL
@@ -97,9 +97,9 @@ CREATE TABLE `produit` (
 -- Déchargement des données de la table `produit`
 --
 
-INSERT INTO `produit` (`id_produit`, `nom_produit`, `p_motscles`, `description`, `prix`, `id_categorie`, `id_image`) VALUES
-(1, 'Moteur de Voiture Audi A3', 'Moteur;Voiture;Audi;A3;', 'Ceci est un moteur blablabla ', 799, 1, 1),
-(2, 'Rétroviseur Renault ', '', 'Rétroviseur de la marque Renault avec une tes grande flexibilité ', 39, 2, 2);
+INSERT INTO `produit` (`id_produit`, `nom_produit`, `p_motscles`, `description`, `qteProduit`, `prix`, `id_categorie`, `id_image`) VALUES
+(1, 'Moteur de Voiture Audi A3', 'Moteur;Voiture;Audi;A3;', 'Ceci est un moteur blablabla ', 1, 799, 1, 1),
+(2, 'Rétroviseur Renault ', '', 'Rétroviseur de la marque Renault avec une tes grande flexibilité ', 0, 39, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -122,7 +122,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `tel`, `adresse`, `email`, `pass`, `lvl`) VALUES
-(1, 'steve', 0, '', 'stevizou@g.com', '9ce5770b3bb4b2a1d59be2d97e34379cd192299f', 1),
+(1, 'steve', 0, 'Ici c\'est paris', 'stevizou@g.com', '9ce5770b3bb4b2a1d59be2d97e34379cd192299f', 1),
 (2, 'Adrien', 0, '', 'ad.dela75020@gmail.com', '4493b1a16b57a2f7a66df59c1ab825911f69562d', 0),
 (4, 'Adrien', 0, '', 'momo@yahoo.com', '52036e5a96b401419e3b870bb3859828b111afd2', 0),
 (5, 'Adrien75020', 0, '', 'ad.delacroix@hotmail.com', '52036e5a96b401419e3b870bb3859828b111afd2', 0),
