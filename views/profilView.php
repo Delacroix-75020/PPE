@@ -42,10 +42,7 @@
 						<i class="align-middle me-1" data-feather="edit-2"></i>
 						Modifier mon Adresse
 					</a>
-					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#edit-tel" role="tab">
-						<i class="align-middle me-1" data-feather="edit-2"></i>
-						Modifier mon Numéro de téléphone
-					</a>
+					
 					<a class="list-group-item list-group-item-action bg-danger text-light" data-bs-toggle="list" href="#delete-compte" role="tab" style="border-color: #dc3545!important;">
 						Supprimer mon compte
 						<i class="align-middle ms-1" data-feather="delete"></i>
@@ -207,33 +204,7 @@
 					</div>
 				</div>
 
-				<!-- Modifier mon username -->
-				<div class="tab-pane fade" id="edit-tel" role="tabpanel">
-					<div class="card reveal-1" style="background-color: #008080;">
-						<div class="card-body">
-							<h3 class="text-center text-light">Modification du numero de telephone</h3>
-							<form method="post" action="" class="mt-4">
-								<p class="fs-lg text-light">Numéro actuel : +33<font color="white"><?= $_SESSION['tel'] ?></font></p>
-								<div class="mb-3">
-									<label for="username" class="form-label text-light fs-lg">Nouveau téléphone</label>
-									<input type="text" name="username" id="username" autocomplete="off" maxlength="15" class="form-control w-50">
-								</div>
-								<div class="mb-3">
-									<p class="text-center text-light fs-lg">
-										Vous serez déconnecté après le changement.
-									</p>
-								</div>
-								<div class="d-flex justify-content-center">
-			                        <div class="d-grid gap-2 col-12 mx-auto">
-			                            <button type="submit" name="new-tel" class="btn btn-lg active fw-bold fs-lg mt-3" style="background-color: #00FFFF; border-color: #00FFFF; color: black;">
-											Modifier mon numéro
-										</button>
-			                        </div>
-			                    </div>
-							</form>
-						</div>
-					</div>
-				</div>
+				
 
 
 				<!-- Supprimer mon compte -->

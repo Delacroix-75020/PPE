@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 11 mars 2021 à 18:30
--- Version du serveur :  10.4.14-MariaDB
--- Version de PHP : 7.4.10
+-- Généré le : ven. 12 mars 2021 à 10:25
+-- Version du serveur :  10.4.17-MariaDB
+-- Version de PHP : 8.0.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -74,7 +74,8 @@ CREATE TABLE `image` (
 
 INSERT INTO `image` (`id_image`, `nom_image`) VALUES
 (1, 'moteurAudi.jpg'),
-(2, 'retro.jpg');
+(2, 'retro.jpg'),
+(3, 'VolantVoiture.jpg');
 
 -- --------------------------------------------------------
 
@@ -99,7 +100,8 @@ CREATE TABLE `produit` (
 
 INSERT INTO `produit` (`id_produit`, `nom_produit`, `p_motscles`, `description`, `qteProduit`, `prix`, `id_categorie`, `id_image`) VALUES
 (1, 'Moteur de Voiture Audi A3', 'Moteur;Voiture;Audi;A3;', 'Ceci est un moteur blablabla ', 1, 799, 1, 1),
-(2, 'Rétroviseur Renault ', '', 'Rétroviseur de la marque Renault avec une tes grande flexibilité ', 0, 39, 2, 2);
+(2, 'Rétroviseur Renault ', '', 'Rétroviseur de la marque Renault avec une tes grande flexibilité ', 100, 39, 2, 2),
+(4, 'Volant GT sport +', 'volant, voiture, sport', 'Un volant en carbone de wish qui pèse environ 361 kg ce qui va te donner l\'impression de conduire un camtar', 200, 29, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -185,13 +187,13 @@ ALTER TABLE `commande`
 -- AUTO_INCREMENT pour la table `image`
 --
 ALTER TABLE `image`
-  MODIFY `id_image` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_image` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `produit`
 --
 ALTER TABLE `produit`
-  MODIFY `id_produit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_produit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `users`

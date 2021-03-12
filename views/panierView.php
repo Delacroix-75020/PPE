@@ -31,6 +31,7 @@
                         $nom_produit = $produit['nom_produit'];
                         $description = $produit['description'];
                         $prix = $produit['prix'];
+                        $qteProduit = $produit['qteProduit'];
                        // $id_categorie = $produit['id_categorie'];
                         $nom_image = $produit['nom_image']; } ?>
                             <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
