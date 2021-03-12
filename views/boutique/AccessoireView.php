@@ -5,7 +5,7 @@
 
     <?php
 
-                    foreach ($selvoitures as $produit) {
+                    foreach ($selAccessoires as $produit) {
                         
                         $id_produit = $produit['id_produit'];
                         $nom_produit = $produit['nom_produit'];

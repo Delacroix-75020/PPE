@@ -16,9 +16,9 @@ include_once("fonction/fonctions-panier.php");
     <h1 class="my-6">La Boutique</h1>
     <div class="list-group">
       <a href="Voiture" class="list-group-item"><img src="img/Voiture.png" >     Voiture</a>
-      <a href="#" class="list-group-item"><img src="img/Bus.png" >     Bus</a>
-      <a href="#" class="list-group-item"><img src="img/volant.png" >     Accessoire automobile</a>
-      <a href="#" class="list-group-item"><img src="img/camion.png" >     Camion</a>
+      <a href="Bus" class="list-group-item"><img src="img/Bus.png" >     Bus</a>
+      <a href="Accessoire" class="list-group-item"><img src="img/volant.png" >     Accessoire automobile</a>
+      <a href="Camion" class="list-group-item"><img src="img/camion.png" >     Camion</a>
     </div>
 
   </div>
