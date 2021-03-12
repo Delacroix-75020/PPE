@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 12 mars 2021 à 10:25
+-- Généré le : ven. 12 mars 2021 à 15:42
 -- Version du serveur :  10.4.17-MariaDB
 -- Version de PHP : 8.0.1
 
@@ -23,6 +23,27 @@ USE ppe;
 --
 -- Base de données : `ppe`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL,
+  `username` varchar(128) NOT NULL,
+  `email` varchar(128) NOT NULL,
+  `pass` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `admin`
+--
+
+INSERT INTO `admin` (`id`, `username`, `email`, `pass`) VALUES
+(1, 'Delacroix', 'ad.dela75020@gmail.com', '4f9996ad3b634ef65d772b702509236456662a35'),
+(2, 'admin', 'admin@admin.fr', 'd033e22ae348aeb5660fc2140aec35850c4da997');
 
 -- --------------------------------------------------------
 
@@ -75,7 +96,24 @@ CREATE TABLE `image` (
 INSERT INTO `image` (`id_image`, `nom_image`) VALUES
 (1, 'moteurAudi.jpg'),
 (2, 'retro.jpg'),
-(3, 'VolantVoiture.jpg');
+(3, 'VolantVoiture.jpg'),
+(4, 'downpipe.jpg'),
+(5, 'jante.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `panier`
+--
+
+CREATE TABLE `panier` (
+  `id_panier` int(11) NOT NULL,
+  `nom` varchar(60) NOT NULL,
+  `qte` int(3) NOT NULL,
+  `prix` float NOT NULL,
+  `id_categorie` int(2) NOT NULL,
+  `id_image` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -101,7 +139,10 @@ CREATE TABLE `produit` (
 INSERT INTO `produit` (`id_produit`, `nom_produit`, `p_motscles`, `description`, `qteProduit`, `prix`, `id_categorie`, `id_image`) VALUES
 (1, 'Moteur de Voiture Audi A3', 'Moteur;Voiture;Audi;A3;', 'Ceci est un moteur blablabla ', 1, 799, 1, 1),
 (2, 'Rétroviseur Renault ', '', 'Rétroviseur de la marque Renault avec une tes grande flexibilité ', 100, 39, 2, 2),
-(4, 'Volant GT sport +', 'volant, voiture, sport', 'Un volant en carbone de wish qui pèse environ 361 kg ce qui va te donner l\'impression de conduire un camtar', 200, 29, 1, 3);
+(4, 'Volant GT sport +', 'volant, voiture, sport', 'Un volant en carbone de wish qui pèse environ 361 kg ce qui va te donner l\'impression de conduire un camtar', 200, 29, 1, 3),
+(5, 'boitier de vitesse Citroën', 'voiture, ', 'Boitier de vitesse 5 rapport Manuelle pour voiture ', 0, 120, 1, 1),
+(6, 'downpipe Scania V8', 'scania, camion, downpipe, V8', 'Downpipe pour Scania V8 5ème génération, idéal pour une reprogrammation moteur', 0, 299.99, 4, 4),
+(7, 'jante pour bus', 'jante, bus,', 'jante en aluminium allégée', 0, 128.99, 3, 5);
 
 -- --------------------------------------------------------
 
@@ -128,11 +169,19 @@ INSERT INTO `users` (`id`, `username`, `tel`, `adresse`, `email`, `pass`, `lvl`)
 (2, 'Adrien', 0, '', 'ad.dela75020@gmail.com', '4493b1a16b57a2f7a66df59c1ab825911f69562d', 0),
 (4, 'Adrien', 0, '', 'momo@yahoo.com', '52036e5a96b401419e3b870bb3859828b111afd2', 0),
 (5, 'Adrien75020', 0, '', 'ad.delacroix@hotmail.com', '52036e5a96b401419e3b870bb3859828b111afd2', 0),
-(6, 'Adrien', 0, '', 'admin@portfolio.com', '52036e5a96b401419e3b870bb3859828b111afd2', 0);
+(6, 'Adrien', 0, '', 'admin@portfolio.com', '52036e5a96b401419e3b870bb3859828b111afd2', 0),
+(7, 'chouaki', 2147483647, '150 rue jean jaures', 'aze@azer.fr', '9cf95dacd226dcf43da376cdb6cbba7035218921', 0),
+(8, 'adrien', 2147483647, '12 rue jean jaurès', 'adrien.doll@gmail.com', '9cf95dacd226dcf43da376cdb6cbba7035218921', 0);
 
 --
 -- Index pour les tables déchargées
 --
+
+--
+-- Index pour la table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `categorie`
@@ -151,6 +200,12 @@ ALTER TABLE `commande`
 --
 ALTER TABLE `image`
   ADD PRIMARY KEY (`id_image`);
+
+--
+-- Index pour la table `panier`
+--
+ALTER TABLE `panier`
+  ADD PRIMARY KEY (`id_panier`);
 
 --
 -- Index pour la table `produit`
@@ -172,6 +227,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT pour la table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT pour la table `categorie`
 --
 ALTER TABLE `categorie`
@@ -187,19 +248,25 @@ ALTER TABLE `commande`
 -- AUTO_INCREMENT pour la table `image`
 --
 ALTER TABLE `image`
-  MODIFY `id_image` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_image` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT pour la table `panier`
+--
+ALTER TABLE `panier`
+  MODIFY `id_panier` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `produit`
 --
 ALTER TABLE `produit`
-  MODIFY `id_produit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_produit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Contraintes pour les tables déchargées
