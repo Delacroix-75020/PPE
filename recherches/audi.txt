@@ -1,1 +1,0 @@
-<div style='float:left; width:100%; padding-bottom:5px;'><a href='moteur-de-voiture-audi-a3' target='_self' style='color:#666666;'>Moteur de voiture <span style='background-color:yellow;'>audi</span> a3</a></div>
