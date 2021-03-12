@@ -11,9 +11,9 @@ include_once("fonction/fonctions-panier.php");
 
 <div class="row">
 
-  <div class="col-lg-3">
+  <div class="col-lg-6">
 
-    <h1 class="my-4">La Boutique</h1>
+    <h1 class="my-6">La Boutique</h1>
     <div class="list-group">
       <a href="Voiture" class="list-group-item"><img src="img/Voiture.png" >     Voiture</a>
       <a href="#" class="list-group-item"><img src="img/Bus.png" >     Bus</a>
@@ -233,7 +233,15 @@ include("commun/connexion.php");
 
 
   <!-- /.col-lg-3 -->
-  <?php
+  
+
+  
+
+
+
+    <div class="row">
+
+    <?php
 
                     foreach ($selproduit as $produit) {
                         
@@ -247,12 +255,6 @@ include("commun/connexion.php");
                     
 
                     ?>
-
-  <div class="col-lg-9">
-
-
-
-    <div class="row">
 
       <div class="col-lg-4 col-md-6 mb-4">
         <div class="card h-100" id="<?= $id_produit ?>">
@@ -269,18 +271,21 @@ include("commun/connexion.php");
           </div>
         </div>
       </div>
-<?php } ?> 
+
 <script>
 function shop() {
  header('Location: panier');
 }
 </script>
+<?php } ?> 
     </div>
     <!-- /.row -->
 
-  </div>
+ 
   <!-- /.col-lg-9 -->
 
+</div>
+</div>
 </div>
 <!-- /.row -->
 
