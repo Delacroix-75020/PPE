@@ -1,8 +1,11 @@
 <?php
-include_once("fonction/fonctions-panier.php");
 require "models/selectproduitModels.php";
-   $selproduit = getlesproduits($bdd);
-   foreach ($selproduit as $produit) {
+include_once("fonction/fonctions-panier.php");
+require "models/panierModels.php";
+   $selpanier = getlespaniers($bdd);
+require "fonction/fonction-panier.php";
+
+   foreach ($selpanier as $produit) {
                         
                         $id_produit = $produit['id_produit'];
                         $nom_produit = $produit['nom_produit'];
