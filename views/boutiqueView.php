@@ -258,10 +258,10 @@ include("commun/connexion.php");
 
       <div class="col-lg-4 col-md-6 mb-4">
         <div class="card h-100" id="<?= $id_produit ?>">
-          <a href="Moteur-de-Voiture-Audi-A3"><img class="card-img-top" src="img/<?= $nom_image ?>"alt=""></a>
+          <a href=""><img class="card-img-top" src="img/<?= $nom_image ?>"alt=""></a>
           <div class="card-body">
             <h4 class="card-title">
-              <a href="Moteur-de-Voiture-Audi-A3"><?= $nom_produit ?></a>
+              <a href=""><?= $nom_produit ?></a>
             </h4>
             <h5><?= $prix ?>€</h5>
             <p class="card-text"><?= $description ?></p>
