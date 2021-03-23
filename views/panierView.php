@@ -25,17 +25,17 @@
                     </thead>
                     <tbody>
                         <tr><?php
-                          foreach ($selproduit as $produit) {
+                          foreach ($lespaniers as $panier) {
                         
-                        $id_produit = $produit['id_produit'];
-                        $nom_produit = $produit['nom_produit'];
-                        $description = $produit['description'];
-                        $prix = $produit['prix'];
-                        $qteProduit = $produit['qteProduit'];
+                        $id_produit = $panier['id_panier'];
+                        $nom = $panier['nom'];
+                        //$description = $panier['description'];
+                        $prix = $panier['prix'];
+                        $qteProduit = $panier['qte'];
                        // $id_categorie = $produit['id_categorie'];
                         $nom_image = $produit['nom_image']; } ?>
                             <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                            <td><?= $nom_produit;?></td>
+                            <td><?= $nom;?></td>
                             <td>In stock</td>
                             <td><input class="form-control" type="text" value="1" /></td>
                             <td class="text-right"><?= $prix;?></td>

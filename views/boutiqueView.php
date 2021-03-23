@@ -245,31 +245,36 @@ include("commun/connexion.php");
 
                     foreach ($selproduit as $produit) {
                         
-                        $id_produit = $produit['id_produit'];
-                        $nom_produit = $produit['nom_produit'];
-                        $description = $produit['description'];
-                        $prix = $produit['prix'];
-                          $qteProduit = $produit['qteProduit'];
+                       $id_produit = $produit['id_produit'];
+                       $nom_produit = $produit['nom_produit'];
+                       $description = $produit['description'];
+                       $prix = $produit['prix'];
+                       $qteProduit = $produit['qteProduit'];
                        // $id_categorie = $produit['id_categorie'];
-                        $nom_image = $produit['nom_image'];
+                       $nom_image = $produit['nom_image'];
                     
 
                     ?>
 
       <div class="col-lg-4 col-md-6 mb-4">
+      <form action="panier" method="post">
         <div class="card h-100" id="<?= $id_produit ?>">
-          <a href=""><img class="card-img-top" src="img/<?= $nom_image ?>"alt=""></a>
+          <a href="" name="id_image"><img class="card-img-top" src="img/<?= $nom_image ?>"alt=""></a>
           <div class="card-body">
             <h4 class="card-title">
-              <a href=""><?= $nom_produit ?></a>
+              <input type="text" a href="" name="nom"><?= $nom_produit ?></input>
             </h4>
-            <h5><?= $prix ?>€</h5>
-            <p class="card-text"><?= $description ?></p>
+            <h5 name="prix"><?= $prix ?>€</h5>
+            <p class="card-text" name="description"><?= $description ?></p>
           </div>
           <div class="card-footer">
-             <a href="panier?action=ajout&l=<?= $id_produit; ?>&q=1&p=<?= $prix; ?>" onclick="shop()" class="addpanier">Ajouter au panier</a>
+          <h5 name="qte"><?= $qteProduit ?> en stock</h5>
+  <//a class="btn text-light" style="background-color:#e23e8c;" href="panier?panier&id_produit=<?= $id_produit; ?>&nom_produit=<?=$nom_produit?>&prix=<?=$prix?>&ajouter" >panier</>
+  <//a class="btn text-dark" style="background-color:#FF5733;" href="panier?panier&id_produit=<?= $id_produit; ?>&nom_produit=<?=$nom_produit?>&prix=<?=$prix?>&ajouter" >panier</>
+  <input type="submit" class="btn btn-danger"  value="ok">
           </div>
         </div>
+        </form>
       </div>
 
 <script>

@@ -1,18 +1,17 @@
-<?php
+<?php 
 
-$bdd = new PDO('mysql:host=localhost;dbname=ppe', 'root', '');
+function getlepanier(PDO $bdd){
 
-function getlespaniers(PDO $bdd){
+    $req = $bdd->prepare('INSERT INTO panier (nom, qte, prix, id_image) VALUES(?, ?, ?, ?)');
+    $req->execute(array('nom' ,'qte','prix','id_image'));
+    
+	//$res = $bdd -> query($req);
 
-	$req = "SELECT panier.id_panier as id_panier,panier.nom as nom, panier.prix as prix, panier.qte as qte, panier.id_categorie as id_categorie, panier.id_image as id_image FROM panier, image WHERE panier.id_image = image.id_image AND panier.id_categorie=categorie.id_categorie AND panier.nom=produit.nom_produit AND panier.qte=produit.qteProduit AND panier.prix=produit.prix";
+	$lespaniers = $req->fetchAll();
 
-	$res = $bdd -> query($req);
-
-	$selpanier = $res->fetchAll();
-
-		return $selpanier;
-
+		return $lespaniers;
 }
+
 
 
 ?>
