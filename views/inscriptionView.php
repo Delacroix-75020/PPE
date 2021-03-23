@@ -30,6 +30,24 @@
                </tr>
                <tr>
                   <td align="right">
+                     <label for="pass2">Adresse de Livraison :</label>
+                  </td>
+                  <td>
+                     <input type="text" placeholder="ex : rue jean moulin" id="adresse" name="adresse" class="box-input" />
+                  </td>
+               </tr>
+               <tr>
+                  <tr>
+                  <td align="right">
+                     <label for="pass2">Numéro de Téléphone  :</label>
+                  </td>
+                  <td>
+                     <input type="text" placeholder="Numéro de Téléphone" id="tel" name="tel" class="box-input" />
+                  </td>
+               </tr>
+               <tr>
+               <tr>
+                  <td align="right">
                      <label for="pass">Mot de passe :</label>
                   </td>
                   <td>
