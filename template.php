@@ -171,7 +171,7 @@
                 <h5>Notre Sous-Traitence</h5>
                 <hr class="bg-white mb-2 mt-0 d-inline-block mx-auto w-25">
                 <p class="mb-0">
-                    La Société Filelec est vraiment une société de merde qui nous sous-paye car ils soutraite en Asie
+                    Un jour on mettra une description correcte un jour mais pour l'instant on a la flemme
                 </p>
             </div>
 
@@ -179,7 +179,7 @@
                 <h5>S'inscrire</h5>
                 <hr class="bg-white mb-2 mt-0 d-inline-block mx-auto w-25">
                 <ul class="list-unstyled">
-                    <li>Inscrivez vous pour profiter de plus de produit</a></li>
+                    <li>Inscrivez vous pour profiter de nos produit</a></li>
                 </ul>
             </div>
 
