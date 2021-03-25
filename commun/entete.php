@@ -21,5 +21,5 @@
 	
 		<div class="div_conteneur_page">
 			 
-			<div class="titre_page"><h1><?php echo $titre; ?></h1></div>
+			<div align="center"class="titre_page"><h1><?php echo $titre; ?></h1></div>
 				<div class="div_int_page">			
