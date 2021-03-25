@@ -2,7 +2,7 @@
 
 include_once("fonction/fonctions-panier.php");
   
-
+$titre = "boutique";
 ?>
 <div class="box-sizing: border-box;">
 
@@ -232,10 +232,141 @@ include("commun/connexion.php");
 
 
 
+
+
+
+
+
+
+
+
+<?php 
+$connect = new PDO("mysql:host=localhost;dbname=ppe","root","");
+if(isset($_POST["add_to_cart"]))
+{
+  if(isset($_SESSION["shopping_cart"]))
+  {
+    $item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
+    
+    if(!in_array($_POST["id_produit"], $item_array_id))
+    {
+      $count = count($_SESSION["shopping_cart"]);
+      $item_array = array(
+        'item_id'     =>  $_POST["id_produit"],
+        'item_name'     =>  $_POST["hidden_name"],
+        'item_price'    =>  $_POST["hidden_price"],
+        'item_quantity'   =>  $_POST["quantity"]
+      );
+      $_SESSION["shopping_cart"][$count] = $item_array;
+    }
+    else
+    {
+      echo '<script>alert("Item Already Added")</script>';
+    }
+  }
+  else
+  {
+    $item_array = array(
+      'item_id'     =>  $_POST["id_produit"],
+      'item_name'     =>  $_POST["hidden_name"],
+      'item_price'    =>  $_POST["hidden_price"],
+      'item_quantity'   =>  $_POST["quantity"]
+    );
+    $_SESSION["shopping_cart"][0] = $item_array;
+  }
+}
+
+
+
+?>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Webslesson Demo | Simple PHP Mysql Shopping Cart</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <br />
+    <div class="container">
+      <br />
+      <br />
+      <br />
+      <h3 align="center">Tutorial - <a href="http://www.webslesson.info/2016/08/simple-php-mysql-shopping-cart.html" title="Simple PHP Mysql Shopping Cart">Simple PHP Mysql Shopping Cart</a></h3><br />
+      <br /><br />
+      <?php
+        $query =  "SELECT * FROM produit ORDER BY id_produit ASC";
+        $result = $connect -> query( $query);
+        if($result->rowCount() > 0)
+        {
+          while($row = $result->fetch())
+          {
+        ?>
+      <div class="col-md-4">
+        <form method="post" action="panier?action=add">
+          <div style="border:1px solid #333; background-color:#f1f1f1; border-radius:5px; padding:16px;" align="center">
+            <img src="images/<?php echo $row["id_image"]; ?>" class="img-responsive" /><br />
+
+            <h4 class="text-info"><?php echo $row["nom_produit"]; ?></h4>
+
+            <h4 class="text-danger">$ <?php echo $row["prix"]; ?></h4>
+
+            <input type="text" name="quantity" value="1" class="form-control" />
+
+            <input type="hidden" name="hidden_name" value="<?php echo $row["nom_produit"]; ?>" />
+
+            <input type="hidden" name="hidden_price" value="<?php echo $row["prix"]; ?>" />
+
+             <input type="hidden" name="id_produit" value="<?php echo $row["id_produit"]; ?>" />
+
+            <input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-success" value="Add to Cart" />
+
+          </div>
+        </form>
+      </div>
+      <?php
+          }
+        }
+      ?></div>
+    </div>
+  </div>
+  <br />
+  </body>
+</html>
+</div>
+<?php
+//If you have use Older PHP Version, Please Uncomment this function for removing error 
+
+/*function array_column($array, $column_name)
+{
+  $output = array();
+  foreach($array as $keys => $values)
+  {
+    $output[] = $values[$column_name];
+  }
+  return $output;
+}*/
+?>
+
   <!-- /.col-lg-3 -->
   
 
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -245,36 +376,31 @@ include("commun/connexion.php");
 
                     foreach ($selproduit as $produit) {
                         
-                       $id_produit = $produit['id_produit'];
-                       $nom_produit = $produit['nom_produit'];
-                       $description = $produit['description'];
-                       $prix = $produit['prix'];
-                       $qteProduit = $produit['qteProduit'];
+                        $id_produit = $produit['id_produit'];
+                        $nom_produit = $produit['nom_produit'];
+                        $description = $produit['description'];
+                        $prix = $produit['prix'];
+                          $qteProduit = $produit['qteProduit'];
                        // $id_categorie = $produit['id_categorie'];
-                       $nom_image = $produit['nom_image'];
+                        $nom_image = $produit['nom_image'];
                     
 
                     ?>
 
       <div class="col-lg-4 col-md-6 mb-4">
-      <form action="panier" method="post">
         <div class="card h-100" id="<?= $id_produit ?>">
-          <a href="" name="id_image"><img class="card-img-top" src="img/<?= $nom_image ?>"alt=""></a>
+          <a href="#"><img class="card-img-top" src="img/<?= $nom_image ?>"alt=""></a>
           <div class="card-body">
             <h4 class="card-title">
-              <input type="text" a href="" name="nom"><?= $nom_produit ?></input>
+              <a href="Moteur-de-Voiture-Audi-A3"><?= $nom_produit ?></a>
             </h4>
-            <h5 name="prix"><?= $prix ?>€</h5>
-            <p class="card-text" name="description"><?= $description ?></p>
+            <h5><?= $prix ?>€</h5>
+            <p class="card-text"><?= $description ?></p>
           </div>
           <div class="card-footer">
-          <h5 name="qte"><?= $qteProduit ?> en stock</h5>
-  <//a class="btn text-light" style="background-color:#e23e8c;" href="panier?panier&id_produit=<?= $id_produit; ?>&nom_produit=<?=$nom_produit?>&prix=<?=$prix?>&ajouter" >panier</>
-  <//a class="btn text-dark" style="background-color:#FF5733;" href="panier?panier&id_produit=<?= $id_produit; ?>&nom_produit=<?=$nom_produit?>&prix=<?=$prix?>&ajouter" >panier</>
-  <input type="submit" class="btn btn-danger"  value="ok">
+             <a href="panier?action=ajout&l=<?= $id_produit; ?>&q=1&p=<?= $prix; ?>" onclick="shop()" class="addpanier">Ajouter au panier</a>
           </div>
         </div>
-        </form>
       </div>
 
 <script>
