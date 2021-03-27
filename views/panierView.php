@@ -6,7 +6,7 @@ if(isset($_GET["id"])){
       if($values["item_id"] == $_GET["id"])
       {
         unset($_SESSION["shopping_cart"][$keys]);
-        echo '<script>alert("Item Removed")</script>';
+        echo '<script>alert("Article retiré du panier")</script>';
         header("Location: ../panier");
       }
     }
@@ -30,7 +30,7 @@ if(isset($_GET["id"])){
     }
     else
     {
-      echo '<script>alert("Item Already Added")</script>';
+      echo '<script>alert("Cet article est déjà dans votre panier")</script>';
     }
   }
   else
@@ -93,9 +93,9 @@ if(isset($_GET["id"])){
                             <td>In stock</td>
                             <td><?php echo $values["item_quantity"]; ?></td>
                             <td> $ <?php echo $values["item_price"]; ?></td>
-                              <td>$ <?php echo number_format($values["item_quantity"] * $values["item_price"], 2);?></td>
+                            <td>$ <?php echo number_format($values["item_quantity"] * $values["item_price"], 2);?></td>
 
-                           <td><a class="btn btn-danger" href="panier/<?php echo $values["item_id"]; ?>"><span class="text">Supprimer</span></a></td>
+                           <td><a class="btn btn-danger" href="panier/<?php echo $values["item_id"]; ?>"><span class="text">Supprimer du panier</span></a></td>
 
                         </tr>
                         <?php
@@ -117,7 +117,7 @@ if(isset($_GET["id"])){
         <div class="col mb-2">
             <div class="row">
                 <div class="col-sm-12  col-md-6">
-                    <button class="btn btn-block btn-light" href="boutique">Continue Shopping</button>
+                <a  href="boutique"><button class="btn btn-block btn-light">Continue Shopping</button></a>
                 </div>
                 <div class="col-sm-12 col-md-6 text-right">
                     <button class="btn btn-lg btn-block btn-success text-uppercase">Valider votre Panier</button>

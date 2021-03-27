@@ -297,19 +297,20 @@ if(isset($_POST["add_to_cart"]))
       <h1 align="center" class="jumbotron-heading" >Boutique </a></h1><br />
       <br /><br />
       <?php
-        $query =  "SELECT * FROM produit ORDER BY id_produit ASC";
+        $query =  "SELECT produit.id_produit as id_produit,produit.nom_produit as nom_produit, produit.description as description, produit.prix as prix, produit.qteProduit as qteProduit, produit.id_categorie as id_categorie, produit.id_image as id_image, images.nom_image as nom_image FROM produit, images WHERE produit.id_image = images.id_image ORDER BY id_produit ASC";
         $result = $connect -> query( $query);
         if($result->rowCount() > 0)
         {
           while($row = $result->fetch())
-          {
+          { $image = $row["nom_image"];
         ?>
-      <div class="col-md-4">
+     <div class="col-md-4">
         <form method="post" action="panier?action=add">
           <div style="border:1px solid #333; background-color:#f1f1f1; border-radius:5px; padding:16px;" align="center">
-            <img src="images/<?php echo $row["id_image"]; ?>" class="img-responsive" /><br />
 
-            <h4 class="text-info"><?php echo $row["nom_produit"]; ?></h4>
+          <img  src="img/"<?= $image; ?>>
+
+            <h3 class="text-secondary"><?php echo $row["nom_produit"]; ?></h3>
 
             <h4 class="text-danger">$ <?php echo $row["prix"]; ?></h4>
 
@@ -321,12 +322,13 @@ if(isset($_POST["add_to_cart"]))
 
              <input type="hidden" name="id_produit" value="<?php echo $row["id_produit"]; ?>" />
 
-            <input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-success" value="Add to Cart" />
+            <input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-success" value="Ajouter au panier" />
 
           </div>
         </form>
       </div>
       <?php
+
           }
         }
       ?></div>
@@ -371,7 +373,7 @@ if(isset($_POST["add_to_cart"]))
 
 
 
-    <div class="row">
+    <!--div class="row">
 
     <?php
 
@@ -390,11 +392,11 @@ if(isset($_POST["add_to_cart"]))
 
       <div class="col-lg-4 col-md-6 mb-4">
         <div class="card h-100" id="<?= $id_produit ?>">
-          <a href="#"><img class="card-img-top" src="img/<?= $nom_image ?>"alt=""></a>
+          <a href="#"><img class="card-img-top" src="img/<?= $produit['nom_image']; ?>"alt=""></a>
           <div class="card-body">
-            <h4 class="card-title">
-              <a href="Moteur-de-Voiture-Audi-A3"><?= $nom_produit ?></a>
-            </h4>
+            <h3 class="card-title">
+              <?= $nom_produit ?>
+            </h3>
             <h5><?= $prix ?>€</h5>
             <p class="card-text"><?= $description ?></p>
           </div>
@@ -410,7 +412,7 @@ function shop() {
 }
 </script>
 <?php } ?> 
-    </div>
+    </!--div>
     <!-- /.row -->
 
  
