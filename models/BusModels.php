@@ -12,5 +12,4 @@ function getlesBus(PDO $bdd){
 }
 
 
-
 ?>

@@ -390,7 +390,7 @@ if(isset($_POST["add_to_cart"]))
 
                     ?>
 
-      <div class="col-lg-4 col-md-6 mb-4">
+      <!--div class="col-lg-4 col-md-6 mb-4">
         <div class="card h-100" id="<?= $id_produit ?>">
           <a href="#"><img class="card-img-top" src="img/<?= $nom_image ?>"alt=""></a>
           <div class="card-body">
