@@ -3,7 +3,7 @@
 function connectBDD(){
     
     try{
-        $bdd = new PDO("mysql:host=localhost;dbname=forum","root","");
+        $bdd = new PDO("mysql:host=localhost;dbname=ppe","root","");
         return $bdd;
     }catch(Exception $e){
         die("erreur bdd");
@@ -17,6 +17,8 @@ function auth($lvl){// fonction qui controle si le lvl de l utilisateur est suff
     else
         header("Location:login");
 }
+
+
 
 
 
