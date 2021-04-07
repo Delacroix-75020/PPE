@@ -70,32 +70,25 @@ $selvoitures = getlesvoitures($bdd);
       <br />
       <h1 align="center" class="jumbotron-heading" >Boutique </a></h1><br />
       <br /><br />
-      <?php
-        $query =  "SELECT * FROM produit  LEFT JOIN image ON produit.id_image = image.id_image where id_categorie=1 ORDER BY id_produit ASC";
-        $result = $connect -> query( $query);
-        if($result->rowCount() > 0)
-        {
-          while($row = $result->fetch())
-          {
-        ?>
+     
       <div class="col-md-4">
         <form method="post" action="panier?action=add">
           <div style="border:1px solid #333; background-color:#f1f1f1; border-radius:5px; padding:16px;" align="center">
-            <img src="img/<?php echo $row["nom_image"]; ?>" class="img-responsive" /><br />
+            <img src="img/<?php echo $nom_image; ?>" class="img-responsive" /><br />
 
-            <h4 class="text-info"><?php echo $row["nom_produit"]; ?></h4>
+            <h4 class="text-info"><?php echo $nom_produit; ?></h4>
 
-            <h4 class="text-danger">$ <?php echo $row["prix"]; ?></h4>
+            <h4 class="text-danger">$ <?php echo $prix; ?></h4>
 
-            <h5 class="text-info"><?php echo $row["description"]; ?></h5>
+            <h5 class="text-info"><?php echo $description; ?></h5>
 
             <input type="text" name="quantity" value="1" class="form-control" />
 
-            <input type="hidden" name="hidden_name" value="<?php echo $row["nom_produit"]; ?>" />
+            <input type="hidden" name="hidden_name" value="<?php echo $nom_produit; ?>" />
 
-            <input type="hidden" name="hidden_price" value="<?php echo $row["prix"]; ?>" />
+            <input type="hidden" name="hidden_price" value="<?php echo $prix; ?>" />
 
-             <input type="hidden" name="id_produit" value="<?php echo $row["id_produit"]; ?>" />
+             <input type="hidden" name="id_produit" value="<?php echo $id_produit; ?>" />
 
             <input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-success" value="Add to Cart" />
 
@@ -103,8 +96,8 @@ $selvoitures = getlesvoitures($bdd);
         </form>
       </div>
       <?php
-          }
-        }}
+          
+        }
       ?></div>
     </div>
   </div>

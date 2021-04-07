@@ -100,6 +100,7 @@ if(isset($_GET["id"])){
                         <?php
               $total = $total + ($values["item_quantity"] * $values["item_price"]);
             }
+            $_SESSION['total'] =  $total;
           ?>
                         <tr>
                             <td></td>
@@ -116,10 +117,10 @@ if(isset($_GET["id"])){
         <div class="col mb-2">
             <div class="row">
                 <div class="col-sm-12  col-md-6">
-                    <button class="btn btn-block btn-light" href="boutique">Continue Shopping</button>
+                    <a class="btn btn-block btn-light" href="boutique">Continue Shopping</a>
                 </div>
                 <div class="col-sm-12 col-md-6 text-right">
-                    <button class="btn btn-lg btn-block btn-success text-uppercase">Valider votre Panier</button>
+                    <a class="btn btn-lg btn-block btn-success text-uppercase" href="Validation">Valider votre Panier</a>
                 </div></div></div></div></div>
         <?php
           }
