@@ -104,45 +104,35 @@
 
 <?php
 
-function getlescamions(PDO $bdd){
-
-	$req = "SELECT produit.id_produit as id_produit,produit.nom_produit as nom_produit, produit.description as description, produit.prix as prix, produit.qteProduit as qteProduit, produit.id_categorie as id_categorie, image.nom_image as nom_image FROM produit, image WHERE produit.id_image = image.id_image AND id_categorie = 4 ";
+function getlescommandes($bdd) {
+	$req = "SELECT * from commande,panier,produit WHERE panier.id_produit=produit.id_produit AND commande.ref_com=panier.ref_com AND commande.total= :total";
 
 	$res = $bdd -> query($req);
 
-	$selcamions = $res->fetchAll();
-
-		return $selcamions;
+	$selcom = $res->fetchAll();
+return $selcom;
+		
 }
- $query =  "SELECT * FROM produit  LEFT JOIN image ON produit.id_image = image.id_image where id_categorie=4 ORDER BY id_produit ASC";
-        $result = $bdd -> query( $query);
-        if($result->rowCount() > 0)
-        {
-          while($row = $result->fetch())
-          {
-
-$selcamions = getlescamions($bdd);
-                    foreach ($selcamions as $produit) {
+                    	foreach ((array) $selcom as $produit) {
                         
                         $id_produit = $produit['id_produit'];
                         $nom_produit = $produit['nom_produit'];
                         $description = $produit['description'];
-                        $prix = $produit['prix'];
+                        $total = $produit['total'];
                           $qteProduit = $produit['qteProduit'];
-                       // $id_categorie = $produit['id_categorie'];
                         $nom_image = $produit['nom_image'];
                     
                     
 
  ?>
 
-            <h4 class="text-info"><?php echo $row["nom_produit"]; ?></h4>
+            <h4 class="text-info"><?php echo ["nom_produit"]; ?></h4>
 
-            <h4 class="text-danger">$ <?php echo $row["prix"]; ?></h4>
+            <h4 class="text-danger"><?php echo ["prix"]; ?></h4>
 
-            <h5 class="text-info"><?php echo $row["description"]; ?></h5>
+            <h5 class="text-info"><?php echo ["description"]; ?></h5>
 <?php
-                    }}}
+                    }
  ?>
                     
 
