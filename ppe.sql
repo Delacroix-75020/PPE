@@ -1,25 +1,25 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 12 mars 2021 à 15:42
--- Version du serveur :  10.4.17-MariaDB
--- Version de PHP : 8.0.1
+-- Généré le : mer. 07 avr. 2021 à 17:59
+-- Version du serveur :  10.4.18-MariaDB
+-- Version de PHP : 7.4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-DROP DATABASE IF EXISTS ppe;
-CREATE DATABASE ppe;
-USE ppe;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
+ DROP DATABASE IF EXISTS PPE;
+ CREATE DATABASE PPE;
+ USE PPE;
 --
 -- Base de données : `ppe`
 --
@@ -73,10 +73,24 @@ INSERT INTO `categorie` (`id_categorie`, `nom_categorie`) VALUES
 --
 
 CREATE TABLE `commande` (
-  `id_commande` int(11) NOT NULL,
-  `libelle_commande` varchar(128) NOT NULL,
-  `date_commande` date NOT NULL
+  `ref_com` int(11) NOT NULL,
+  `date_commande` date NOT NULL,
+  `id_u` int(11) NOT NULL,
+  `total` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `commande`
+--
+
+INSERT INTO `commande` (`ref_com`, `date_commande`, `id_u`, `total`) VALUES
+(9, '2021-04-07', 1, 0),
+(10, '2021-04-07', 1, 0),
+(11, '2021-04-07', 1, 0),
+(12, '2021-04-07', 1, 0),
+(13, '2021-04-07', 1, 0),
+(14, '2021-04-07', 1, 0),
+(15, '2021-04-07', 15, 815.95);
 
 -- --------------------------------------------------------
 
@@ -98,7 +112,8 @@ INSERT INTO `image` (`id_image`, `nom_image`) VALUES
 (2, 'retro.jpg'),
 (3, 'VolantVoiture.jpg'),
 (4, 'downpipe.jpg'),
-(5, 'jante.jpg');
+(5, 'jante.jpg'),
+(6, 'pessi.jpg');
 
 -- --------------------------------------------------------
 
@@ -107,13 +122,20 @@ INSERT INTO `image` (`id_image`, `nom_image`) VALUES
 --
 
 CREATE TABLE `panier` (
-  `id_panier` int(11) NOT NULL,
-  `nom` varchar(60) NOT NULL,
-  `qte` int(3) NOT NULL,
-  `prix` float NOT NULL,
-  `id_categorie` int(2) NOT NULL,
-  `id_image` int(11) NOT NULL
+  `id_produit` int(11) NOT NULL,
+  `ref_com` int(11) NOT NULL,
+  `qte` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `panier`
+--
+
+INSERT INTO `panier` (`id_produit`, `ref_com`, `qte`) VALUES
+(1, 13, 2),
+(1, 14, 1),
+(2, 13, 1),
+(4, 14, 1);
 
 -- --------------------------------------------------------
 
@@ -140,9 +162,9 @@ INSERT INTO `produit` (`id_produit`, `nom_produit`, `p_motscles`, `description`,
 (1, 'Moteur de Voiture Audi A3', 'Moteur;Voiture;Audi;A3;', 'Ceci est un moteur blablabla ', 1, 799, 1, 1),
 (2, 'Rétroviseur Renault ', '', 'Rétroviseur de la marque Renault avec une tes grande flexibilité ', 100, 39, 2, 2),
 (4, 'Volant GT sport +', 'volant, voiture, sport', 'Un volant en carbone de wish qui pèse environ 361 kg ce qui va te donner l\'impression de conduire un camtar', 200, 29, 1, 3),
-(5, 'boitier de vitesse Citroën', 'voiture, ', 'Boitier de vitesse 5 rapport Manuelle pour voiture ', 0, 120, 1, 1),
 (6, 'downpipe Scania V8', 'scania, camion, downpipe, V8', 'Downpipe pour Scania V8 5ème génération, idéal pour une reprogrammation moteur', 0, 299.99, 4, 4),
-(7, 'jante pour bus', 'jante, bus,', 'jante en aluminium allégée', 0, 128.99, 3, 5);
+(7, 'jante pour bus', 'jante, bus,', 'jante en aluminium allégée', 0, 128.99, 3, 5),
+(8, 'un truc qui coute cher ', 'voiture, ', 'Ce truc vaut une blinde ', 10, 1599, 2, 5);
 
 -- --------------------------------------------------------
 
@@ -153,25 +175,26 @@ INSERT INTO `produit` (`id_produit`, `nom_produit`, `p_motscles`, `description`,
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(70) NOT NULL,
-  `tel` int(11) NOT NULL,
-  `adresse` varchar(128) NOT NULL,
+  `tel` varchar(20) NOT NULL,
+  `adresse` varchar(128) DEFAULT NULL,
   `email` varchar(70) NOT NULL,
-  `pass` varchar(70) NOT NULL,
-  `lvl` int(1) NOT NULL
+  `pass` varchar(70) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `tel`, `adresse`, `email`, `pass`, `lvl`) VALUES
-(1, 'steve', 0, 'Ici c\'est paris', 'stevizou@g.com', '9ce5770b3bb4b2a1d59be2d97e34379cd192299f', 1),
-(2, 'Adrien', 0, '', 'ad.dela75020@gmail.com', '4493b1a16b57a2f7a66df59c1ab825911f69562d', 0),
-(4, 'Adrien', 0, '', 'momo@yahoo.com', '52036e5a96b401419e3b870bb3859828b111afd2', 0),
-(5, 'Adrien75020', 0, '', 'ad.delacroix@hotmail.com', '52036e5a96b401419e3b870bb3859828b111afd2', 0),
-(6, 'Adrien', 0, '', 'admin@portfolio.com', '52036e5a96b401419e3b870bb3859828b111afd2', 0),
-(7, 'chouaki', 2147483647, '150 rue jean jaures', 'aze@azer.fr', '9cf95dacd226dcf43da376cdb6cbba7035218921', 0),
-(8, 'adrien', 2147483647, '12 rue jean jaurès', 'adrien.doll@gmail.com', '9cf95dacd226dcf43da376cdb6cbba7035218921', 0);
+INSERT INTO `users` (`id`, `username`, `tel`, `adresse`, `email`, `pass`) VALUES
+(1, 'steve', '0684753214', 'Place de la barbacane ', 'stevizou@g.com', '9ce5770b3bb4b2a1d59be2d97e34379cd192299f'),
+(2, 'Adrien', '0674321465', '', 'ad.dela75020@gmail.com', '4493b1a16b57a2f7a66df59c1ab825911f69562d'),
+(4, 'Adrien', '0155467323', '', 'momo@yahoo.com', '52036e5a96b401419e3b870bb3859828b111afd2'),
+(7, 'chouaki', '2147483647', '150 rue jean jaures', 'aze@azer.fr', '9cf95dacd226dcf43da376cdb6cbba7035218921'),
+(8, 'adrien', '2147483647', '12 rue jean jaurès', 'adrien.doll@gmail.com', '9cf95dacd226dcf43da376cdb6cbba7035218921'),
+(11, 'Adrien', '0865432176', NULL, 'azerty@gmail.com', NULL),
+(13, 'azerty', '0688367843', NULL, 'azerty123@gmail.com', NULL),
+(14, 'Delacroix', '0765389201', NULL, 'audd@pnl.com', NULL),
+(15, 'Mark', '0674661496', '8 rue Vaugirard', 'idlx@hotmail.com', '9cf95dacd226dcf43da376cdb6cbba7035218921');
 
 --
 -- Index pour les tables déchargées
@@ -193,7 +216,8 @@ ALTER TABLE `categorie`
 -- Index pour la table `commande`
 --
 ALTER TABLE `commande`
-  ADD PRIMARY KEY (`id_commande`);
+  ADD PRIMARY KEY (`ref_com`),
+  ADD KEY `id_u` (`id_u`);
 
 --
 -- Index pour la table `image`
@@ -205,7 +229,8 @@ ALTER TABLE `image`
 -- Index pour la table `panier`
 --
 ALTER TABLE `panier`
-  ADD PRIMARY KEY (`id_panier`);
+  ADD PRIMARY KEY (`id_produit`,`ref_com`),
+  ADD KEY `ref_com` (`ref_com`);
 
 --
 -- Index pour la table `produit`
@@ -219,8 +244,7 @@ ALTER TABLE `produit`
 -- Index pour la table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -242,35 +266,42 @@ ALTER TABLE `categorie`
 -- AUTO_INCREMENT pour la table `commande`
 --
 ALTER TABLE `commande`
-  MODIFY `id_commande` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ref_com` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT pour la table `image`
 --
 ALTER TABLE `image`
-  MODIFY `id_image` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT pour la table `panier`
---
-ALTER TABLE `panier`
-  MODIFY `id_panier` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_image` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `produit`
 --
 ALTER TABLE `produit`
-  MODIFY `id_produit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_produit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Contraintes pour les tables déchargées
 --
+
+--
+-- Contraintes pour la table `commande`
+--
+ALTER TABLE `commande`
+  ADD CONSTRAINT `commande_ibfk_1` FOREIGN KEY (`id_u`) REFERENCES `users` (`id`);
+
+--
+-- Contraintes pour la table `panier`
+--
+ALTER TABLE `panier`
+  ADD CONSTRAINT `panier_ibfk_1` FOREIGN KEY (`id_produit`) REFERENCES `produit` (`id_produit`),
+  ADD CONSTRAINT `panier_ibfk_2` FOREIGN KEY (`ref_com`) REFERENCES `commande` (`ref_com`);
 
 --
 -- Contraintes pour la table `produit`

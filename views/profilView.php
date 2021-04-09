@@ -26,9 +26,13 @@
 						<i class="align-middle me-1" data-feather="align-left"></i>
 						Informations générales
 					</a>
+						<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#commandes" role="tab">
+						<i class="align-middle me-1" data-feather="align-left"></i>
+						Commandes
+					</a>
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#edit-username" role="tab">
 						<i class="align-middle me-1" data-feather="edit-2"></i>
-						Modifier mon username
+						Modifier mon Nom d'utilisateur
 					</a>
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#edit-email" role="tab">
 						<i class="align-middle me-1" data-feather="edit-2"></i>
@@ -72,7 +76,7 @@
 					
 							<p class="text-light">
 								<i class="align-middle me-1 fas fa-fw fa-envelope"></i>
-								Vore Adresse Mail : <?= $_SESSION['email'] ?></b>
+								Votre Adresse Mail : <?= $_SESSION['email'] ?></b>
 							</p>
 							<div class="d-flex justify-content-center">
 								<a class="btn btn-warning active text-dark" href="deconnexion">
@@ -83,15 +87,77 @@
 					</div>
 				</div>
 
+
+
+
+				<!-- COMMANDES -->
+				<div class="tab-pane fade " id="commandes" role="tabpanel">
+					<div class="card reveal-1" style="background-color: #4682B4;">
+						<div class="card-header">
+							<h5 class="card-title mb-0">
+								<i class="align-middle me-1" data-feather="align-left"></i>
+								Commandes éffectuées
+							</h5>
+
+							
+
+
+<?php
+
+function getlescamions(PDO $bdd){
+
+	$req = "SELECT produit.id_produit as id_produit,produit.nom_produit as nom_produit, produit.description as description, produit.prix as prix, produit.qteProduit as qteProduit, produit.id_categorie as id_categorie, image.nom_image as nom_image FROM produit, image WHERE produit.id_image = image.id_image AND id_categorie = 4 ";
+
+	$res = $bdd -> query($req);
+
+	$selcamions = $res->fetchAll();
+
+		return $selcamions;
+}
+ $query =  "SELECT * FROM produit  LEFT JOIN image ON produit.id_image = image.id_image where id_categorie=4 ORDER BY id_produit ASC";
+        $result = $bdd -> query( $query);
+        if($result->rowCount() > 0)
+        {
+          while($row = $result->fetch())
+          {
+
+$selcamions = getlescamions($bdd);
+                    foreach ($selcamions as $produit) {
+                        
+                        $id_produit = $produit['id_produit'];
+                        $nom_produit = $produit['nom_produit'];
+                        $description = $produit['description'];
+                        $prix = $produit['prix'];
+                          $qteProduit = $produit['qteProduit'];
+                       // $id_categorie = $produit['id_categorie'];
+                        $nom_image = $produit['nom_image'];
+                    
+                    
+
+ ?>
+
+            <h4 class="text-info"><?php echo $row["nom_produit"]; ?></h4>
+
+            <h4 class="text-danger">$ <?php echo $row["prix"]; ?></h4>
+
+            <h5 class="text-info"><?php echo $row["description"]; ?></h5>
+<?php
+                    }}}
+ ?>
+                    
+
+ </div></div></div>
+
+
 				<!-- Modifier mon username -->
 				<div class="tab-pane fade" id="edit-username" role="tabpanel">
 					<div class="card reveal-1" style="background-color: #008080;">
 						<div class="card-body">
-							<h3 class="text-center text-light">Modification du username</h3>
+							<h3 class="text-center text-light">Modification du nom d'utilisateur</h3>
 							<form method="post" action="" class="mt-4">
-								<p class="fs-lg text-light">username actuel : <font color="white"><?= $_SESSION['username'] ?></font></p>
+								<p class="fs-lg text-light">Nom d'utilisateur actuel : <font color="white"><?= $_SESSION['username'] ?></font></p>
 								<div class="mb-3">
-									<label for="username" class="form-label text-light fs-lg">Nouveau username</label>
+									<label for="username" class="form-label text-light fs-lg">Nouveau nom d'utilisateur</label>
 									<input type="text" name="username" id="username" autocomplete="off" maxlength="15" class="form-control w-50">
 								</div>
 								<div class="mb-3">
@@ -102,7 +168,7 @@
 								<div class="d-flex justify-content-center">
 			                        <div class="d-grid gap-2 col-12 mx-auto">
 			                            <button type="submit" name="new-username" class="btn btn-lg active fw-bold fs-lg mt-3" style="background-color: #00FFFF; border-color: #00FFFF; color: black;">
-											Modifier mon username
+											Modifier mon nom d'utilisateur
 										</button>
 			                        </div>
 			                    </div>
@@ -235,8 +301,4 @@
 							</form>
 						</div>
 					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+		

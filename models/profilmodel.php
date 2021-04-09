@@ -1,5 +1,18 @@
 <?php
 
+function commandes($commandes) {
+	global $bdd;
+	$SQL_commandes = "SELECT * from commande,panier,produit WHERE panier.id_produit=produit.id_produit AND commande.ref_com=panier.ref_com AND commande.total= :total";
+	$requete_commandes = $bdd->prepare($SQL_commandes);
+    $requete_commandes->bindParam(':total', $commandes, PDO::PARAM_STR);
+    $requete_commandes->execute();
+    return $requete_commandes->fetchAll(PDO::FETCH_OBJ);
+}
+
+
+
+
+
 /*** MODIFICATION DU username ***/
 function checkusername($username) {
 	global $bdd;

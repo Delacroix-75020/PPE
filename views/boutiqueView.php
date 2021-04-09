@@ -26,7 +26,7 @@ $titre = "boutique";
 
 
 
-<?php 
+<?php //barre de recherche
 include("commun/connexion.php");
   include("commun/entete.php");
   include("fonction/traitement_chaine.php");
@@ -227,7 +227,8 @@ include("commun/connexion.php");
       <div class="div_saut_ligne" style="height:50px;">
       </div>
 
-
+<?php//barre de recherche   
+?>
 
 
 
@@ -293,10 +294,10 @@ if(isset($_POST["add_to_cart"]))
       <br />
       <br />
       <br />
-      <h3 align="center">Tutorial - <a href="http://www.webslesson.info/2016/08/simple-php-mysql-shopping-cart.html" title="Simple PHP Mysql Shopping Cart">Simple PHP Mysql Shopping Cart</a></h3><br />
+      <h1 align="center" class="jumbotron-heading" >Boutique </a></h1><br />
       <br /><br />
       <?php
-        $query =  "SELECT * FROM produit ORDER BY id_produit ASC";
+        $query =  "SELECT * FROM produit LEFT JOIN image ON produit.id_image = image.id_image ORDER BY id_produit ASC";
         $result = $connect -> query( $query);
         if($result->rowCount() > 0)
         {
@@ -306,11 +307,13 @@ if(isset($_POST["add_to_cart"]))
       <div class="col-md-4">
         <form method="post" action="panier?action=add">
           <div style="border:1px solid #333; background-color:#f1f1f1; border-radius:5px; padding:16px;" align="center">
-            <img src="images/<?php echo $row["id_image"]; ?>" class="img-responsive" /><br />
+            <img src="img/<?php echo $row["nom_image"]; ?>" class="img-responsive" /><br />
 
             <h4 class="text-info"><?php echo $row["nom_produit"]; ?></h4>
 
             <h4 class="text-danger">$ <?php echo $row["prix"]; ?></h4>
+
+            <h5 class="text-info"><?php echo $row["description"]; ?></h5>
 
             <input type="text" name="quantity" value="1" class="form-control" />
 
@@ -387,7 +390,7 @@ if(isset($_POST["add_to_cart"]))
 
                     ?>
 
-      <div class="col-lg-4 col-md-6 mb-4">
+      <!--div class="col-lg-4 col-md-6 mb-4">
         <div class="card h-100" id="<?= $id_produit ?>">
           <a href="#"><img class="card-img-top" src="img/<?= $nom_image ?>"alt=""></a>
           <div class="card-body">
