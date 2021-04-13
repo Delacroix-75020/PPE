@@ -90,14 +90,17 @@
 
 
 
-				<!-- COMMANDES -->
-				<div class="tab-pane fade " id="commandes" role="tabpanel">
-					<div class="card reveal-1" style="background-color: #4682B4;">
-						<div class="card-header">
-							<h5 class="card-title mb-0">
-								<i class="align-middle me-1" data-feather="align-left"></i>
-								Commandes éffectuées
-							</h5>
+				 <!-- COMMANDES -->
+                <div class="tab-pane fade " id="commandes" role="tabpanel">
+                    <div class="card reveal-1" style="background-color: #4682B4;">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">
+                                <i class="align-middle me-1" data-feather="align-left"></i>
+                                Commandes éffectuées
+                            </h5>
+                        </div>
+                    </div>
+                </div>
 
 							
 
