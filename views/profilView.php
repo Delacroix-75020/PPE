@@ -104,33 +104,43 @@
 
 <?php
 
-function getlescommandes($bdd) {
-	$req = "SELECT * from commande,panier,produit WHERE panier.id_produit=produit.id_produit AND commande.ref_com=panier.ref_com AND commande.total= :total";
+
+	$req = "SELECT users.id, date_commande, total, nom_produit, panier.id_produit 
+			FROM users, commande, panier, produit 
+			WHERE panier.id_produit = produit.id_produit
+				 AND panier.ref_com = commande.ref_com
+				 AND users.id = commande.id_u 
+				 AND users.id=".$_SESSION['id'];
+
+	
 
 	$res = $bdd -> query($req);
 
 	$selcom = $res->fetchAll();
-return $selcom;
+
 		
-}
-                    	foreach ((array) $selcom as $produit) {
+
+                    	foreach ( $selcom as $produit) {
                         
-                        $id_produit = $produit['id_produit'];
+                       
+                        $date_produit = $produit['date_commande'];
                         $nom_produit = $produit['nom_produit'];
-                        $description = $produit['description'];
                         $total = $produit['total'];
-                          $qteProduit = $produit['qteProduit'];
-                        $nom_image = $produit['nom_image'];
+                        $panierproduit = $produit['id_produit'];
+                        
                     
                     
 
  ?>
 
-            <h4 class="text-info"><?php echo ["nom_produit"]; ?></h4>
 
-            <h4 class="text-danger"><?php echo ["prix"]; ?></h4>
+            <h4 class="text-danger"><?= $produit["date_commande"]; ?></h4>
 
-            <h5 class="text-info"><?php echo ["description"]; ?></h5>
+            <h5 class="text-info"><?= $produit["nom_produit"]; ?></h5>
+
+            <h5 class="text-info"><?= $produit["total"]; ?></h5>
+
+            <h5 class="text-info"><?= $produit["id_produit"]; ?></h5>
 <?php
                     }
  ?>

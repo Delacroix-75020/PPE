@@ -19,6 +19,7 @@ if (isset($_POST['formconnexion'])) {
                      $_SESSION['tel'] = $requete['tel'];
                     $_SESSION['email'] = $requete['email'];
                     $_SESSION['pass'] = $requete['pass'];
+                    $_SESSION['lvl'] = 1;
                     header('Location: home');
                 
             } else {
