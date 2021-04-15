@@ -26,7 +26,7 @@
 <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon.ico">
 <meta name="theme-color" content="#7952b3">
 <link rel="stylesheet" type="text/css" href="css/search.css">
-
+<link rel="stylesheet" type="text/css" href="css/validation.css">
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -168,10 +168,10 @@
    <div class="container">
         <div class="row">
             <div class="col-md-3 col-lg-4 col-xl-3">
-                <h5>Notre Sous-Traitence</h5>
+                <h5>Description</h5>
                 <hr class="bg-white mb-2 mt-0 d-inline-block mx-auto w-25">
                 <p class="mb-0">
-                    Un jour on mettra une description correcte un jour mais pour l'instant on a la flemme
+                    . . .
                 </p>
             </div>
 
