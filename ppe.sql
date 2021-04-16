@@ -195,7 +195,7 @@ INSERT INTO `users` (`id`, `username`, `tel`, `adresse`, `email`, `pass`) VALUES
 (13, 'azerty', '0688367843', NULL, 'azerty123@gmail.com', NULL),
 (14, 'Delacroix', '0765389201', NULL, 'audd@pnl.com', NULL),
 (15, 'Mark', '0674661496', '8 rue Vaugirard', 'idlx@hotmail.com', '9cf95dacd226dcf43da376cdb6cbba7035218921');
-
+(16, 'user', '07080901020', 'rue jean moulin', 'user@gmail.com', '107d348bff437c999a9ff192adcb78cb03b8ddc6');
 --
 -- Index pour les tables déchargées
 --
