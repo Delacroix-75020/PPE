@@ -1,5 +1,4 @@
-
-
+<?php auth(1); ?>
 <style type="text/css">
   	.succes {
   background-color: #4BB543;

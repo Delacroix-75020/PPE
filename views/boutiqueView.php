@@ -1,3 +1,4 @@
+<?php auth(1); ?>
 <?php
 
 include_once("fonction/fonctions-panier.php");

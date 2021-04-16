@@ -1,3 +1,4 @@
+<?php auth(1); ?>
 <div class="container-fluid mt-4">
 	<div class="row d-flex justify-content-center reveal">
 		<div class="container">

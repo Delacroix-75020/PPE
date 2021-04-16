@@ -1,3 +1,4 @@
+<?php auth(1); ?>
 <?php
 
 if(isset($_GET["id"])){
