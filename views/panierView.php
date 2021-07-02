@@ -48,16 +48,6 @@ if(isset($_GET["id"])){
 ?>
 
 
-
-
-
-
-
-
-
-
-
-
 <section class="jumbotron text-center">
     <div class="container">
         <h1 class="jumbotron-heading">Votre Panier</h1>
@@ -71,26 +61,40 @@ if(isset($_GET["id"])){
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th scope="col"> </th>
+                           
                             <th scope="col">Produit</th>
-                            <th scope="col">Available</th>
-                            <th scope="col" class="text-center">Quantity</th>
+                            <th scope="col">Disponibilité</th>
+                            <th scope="col" class="text-center">Quantité</th>
                             <th scope="col" class="text-right">Prix</th>
+                            <th scope="col" class="text-right">Prix combinée</th>
                             <th> </th>
                         </tr>
                     </thead>
                     <?php
           if(!empty($_SESSION["shopping_cart"]))
           {
+            $panierok = true ;
             $total = 0;
             foreach($_SESSION["shopping_cart"] as $keys => $values)
             {
+                $dispo = "In stock";
+                $style = " style = 'color:green'";
+                  $selectproduit = $bdd ->query("SELECT qteProduit, nom_produit from produit WHERE id_produit = ".$values['item_id']);
+                  $res = $selectproduit->fetch();
+                  $quantite = $res['qteProduit'];
+                  if ($quantite < $values['item_quantity']){
+                     $dispo = "Out of stock";
+                     $style = " style = 'color:red'";
+                     $panierok = false;
+                      
+                }
+
           ?>
                 <tbody>
                         <tr>
                          
                             <td><?php echo $values["item_name"]; ?></td>
-                            <td>In stock</td>
+                            <td<?= $style ?>><?= $dispo ?></td>
                             <td><?php echo $values["item_quantity"]; ?></td>
                             <td> $ <?php echo $values["item_price"]; ?></td>
                               <td>$ <?php echo number_format($values["item_quantity"] * $values["item_price"], 2);?></td>
@@ -120,9 +124,25 @@ if(isset($_GET["id"])){
                 <div class="col-sm-12  col-md-6">
                     <a class="btn btn-block btn-light" href="boutique">Continue Shopping</a>
                 </div>
-                <div class="col-sm-12 col-md-6 text-right">
+                <?php
+                    if($panierok){
+                ?>
+                <div class="col-sm-12 col-md-6 text-right"> 
                     <a class="btn btn-lg btn-block btn-success text-uppercase" href="Validation">Valider votre Panier</a>
-                </div></div></div></div></div>
+                </div>
+            <?php 
+            } else { 
+            ?>
+            <div class="col-sm-12 col-md-6 text-right"> 
+                    <label> <strong>Votre panier ne peut pas étre validé</strong></label> 
+                </div>
+            <?php 
+            } 
+            ?>
+            </div>
+        </div>
+    </div>
+</div>
         <?php
           }
           ?>

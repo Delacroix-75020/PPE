@@ -89,13 +89,49 @@ body { margin:0; font-family: 'Roboto';}
   <?php
 //insertion dans Commande
 
-$insertCommande = $bdd->query("INSERT INTO commande VALUES('',curdate(),".$_SESSION['id'].", ".$_SESSION['total'].")");
+// Verifié la disponibilité des produits
+$produitsrupture = [];
+
+foreach($_SESSION['shopping_cart'] as $item){
+
+  $selectproduit = $bdd ->query("SELECT qteProduit, nom_produit from produit WHERE id_produit = ".$item['item_id']);
+  $res = $selectproduit->fetch();
+  $quantite = $res['qteProduit'];
+  if ($quantite < $item['item_quantity']){
+    $nom_produit = $res['nom_produit'];
+    $produitsrupture[$nom_produit] = $quantite;
+  }
+  
+}
+if (count($produitsrupture) > 0){
+
+    foreach($produitsrupture as $nomproduit => $quantite){
+        echo $nomproduit. " n'est plus en stock(".$quantite.")<br>";
+
+    }
+}
+else{
+  $insertCommande = $bdd->query("INSERT INTO commande VALUES('',curtime(),".$_SESSION['id'].", ".$_SESSION['total'].")");
 
 $refCommande = $bdd->lastInsertId();
 // INSERTION DANS Panier
 foreach($_SESSION['shopping_cart'] as $item){
-	$insertPanier = $bdd->query("INSERT INTO panier VALUES(".$item['item_id'].",".$refCommande.",".$item['item_quantity'].")");
+  $insertPanier = $bdd->query("INSERT INTO panier VALUES(".$item['item_id'].",".$refCommande.",".$item['item_quantity'].")");
+
+// Produit Update
+  $selectproduit = $bdd ->query("SELECT qteProduit from produit WHERE id_produit = ".$item['item_id']);
+  $res = $selectproduit->fetch();
+  $quantite = $res['qteProduit'];
+  $quantite = $quantite - $item['item_quantity'];
+
+  $str = "UPDATE produit SET qteProduit = " .$quantite. " WHERE id_produit = ".$item['item_id'];
+  $updateqte = $bdd -> query($str);
+  
 }
+}
+
+
+
 
 $_SESSION['shopping_cart'] = array();
 

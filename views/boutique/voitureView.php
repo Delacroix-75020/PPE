@@ -57,19 +57,12 @@ $selvoitures = getlesvoitures($bdd);
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Webslesson Demo | Simple PHP Mysql Shopping Cart</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   </head>
   <body>
-    <br />
     <div class="container">
-      <br />
-      <br />
-      <br />
-      <h1 align="center" class="jumbotron-heading" >Boutique </a></h1><br />
-      <br /><br />
      
       <div class="col-md-4">
         <form method="post" action="panier?action=add">

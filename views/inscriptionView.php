@@ -1,81 +1,52 @@
-  <body>
-       <div class="row d-flex justify-content-center">
-        <div class="col-sm-8 col-md-7 py-4">
-         <form method="POST" class="box">
-            <table class="box-input">
-            <h1 class="box-title">S'inscrire</h1>
-               <tr>
-                  <td align="right">
-                     <label for="username" >username :</label>
-                  </td>
-                  <td>
-                     <input type="text" placeholder="Votre username" id="username" name="username" class="box-input" value="<?php if(isset($username)) { echo $username; } ?>" />
-                  </td>
-               </tr>
-               <tr>
-                  <td align="right">
-                     <label for="email">email :</label>
-                  </td>
-                  <td>
-                     <input type="email" placeholder="Votre email" id="email" name="email" class="box-input" value="<?php if(isset($email)) { echo $email; } ?>" />
-                  </td>
-               </tr>
-               <tr>
-                  <td align="right">
-                     <label for="email2">Confirmation du email :</label>
-                  </td>
-                  <td>
-                     <input type="email" placeholder="Confirmez votre email" id="email2" name="email2" class="box-input" value="<?php if(isset($email2)) { echo $email2; } ?>" />
-                  </td>
-               </tr>
-               <tr>
-                  <td align="right">
-                     <label for="pass2">Adresse de Livraison :</label>
-                  </td>
-                  <td>
-                     <input type="text" placeholder="ex : rue jean moulin" id="adresse" name="adresse" class="box-input" />
-                  </td>
-               </tr>
-               <tr>
-                  <tr>
-                  <td align="right">
-                     <label for="pass2">Numéro de Téléphone  :</label>
-                  </td>
-                  <td>
-                     <input type="text" placeholder="Numéro de Téléphone" id="tel" name="tel" class="box-input" />
-                  </td>
-               </tr>
-               <tr>
-               <tr>
-                  <td align="right">
-                     <label for="pass">Mot de passe :</label>
-                  </td>
-                  <td>
-                     <input type="password" placeholder="Votre mot de passe" id="pass" name="pass" class="box-input" />
-                  </td>
-               </tr>
-               <tr>
-                  <td align="right">
-                     <label for="pass2">Confirmation du mot de passe :</label>
-                  </td>
-                  <td>
-                     <input type="password" placeholder="Confirmez votre pass" id="pass2" name="pass2" class="box-input" />
-                  </td>
-               </tr>
-               <tr>
-                  
-                  <td>
-                     <br />
-                     <input type="submit" name="forminscription" value="Je m'inscris" class="box-button" align="center" />
-                  </td>
-               </tr>
-            </table>
-         </form>
-         <?php
-         if(isset($erreur)) {
-            echo '<font color="red" align="center">'.$erreur."</font>";
-         }
-         ?>
-      </div>
-   </body>
-</html>
+<div class="row d-flex justify-content-center">
+    <div class="col-sm-4 col-md-4 py-4">
+        <?php if(isset($erreur)) { ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <div class="alert-message">
+                    <?= $erreur; ?>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php } ?>
+        <div class="card">
+            <div class="card-header">
+                <h1 class="box-title">S'inscrire</h1>
+            </div>
+            <div class="card-body">
+                <form method="post" action="">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Pseudo :</label>
+                        <input type="text" id="username" name="username" placeholder="Votre pseudo" class="form-control" value="<?php if(isset($username)) { echo $username; } ?>" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Adresse email :</label>
+                        <input type="email" id="email" name="email" placeholder="Votre adresse email" class="form-control" value="<?php if(isset($email)) { echo $email; } ?>" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="email2" class="form-label">Confirmation de l'adresse email :</label>
+                        <input type="email" id="email2" name="email2" placeholder="Confirmez votre adresse email" class="form-control" value="<?php if(isset($email2)) { echo $email2; } ?>" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="adresse" class="form-label">Adresse de Livraison :</label>
+                        <input type="text" id="adresse" name="adresse" placeholder="ex : rue jean moulin" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="tel" class="form-label">Numéro de Téléphone  :</label>
+                        <input type="tel" id="tel" name="tel" placeholder="Numéro de Téléphone" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="pass" class="form-label">Mot de passe :</label>
+                        <input type="password" id="pass" name="pass" placeholder="Votre mot de passe" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="pass2" class="form-label">Confirmation du mot de passe :</label>
+                        <input type="password" id="pass2" name="pass2" placeholder="Confirmez votre mot de passe" class="form-control" />
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" name="forminscription" class="btn btn-success">Je m'inscris</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

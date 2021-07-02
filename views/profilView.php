@@ -106,12 +106,13 @@
 <?php
 
 
-	$req = "SELECT users.id, date_commande, total, nom_produit, panier.id_produit 
+	$req = "SELECT users.id, date_commande, total, nom_produit, qte, commande.ref_com, panier.id_produit 
 			FROM users, commande, panier, produit 
 			WHERE panier.id_produit = produit.id_produit
 				 AND panier.ref_com = commande.ref_com
 				 AND users.id = commande.id_u 
-				 AND users.id=".$_SESSION['id'];
+				 AND users.id=".$_SESSION['id']."
+				 ORDER BY date_commande desc";
 
 	
 
@@ -119,29 +120,34 @@
 
 	$selcom = $res->fetchAll();
 
-		
+	$ref_com = '';
 
-                    	foreach ( $selcom as $produit) {
-                        
-                       
+
+                   	foreach ( $selcom as $produit) {
+                                           
                         $date_produit = $produit['date_commande'];
                         $nom_produit = $produit['nom_produit'];
                         $total = $produit['total'];
-                        $panierproduit = $produit['id_produit'];
+                        $panierproduit = $produit['qte'];
+                        if ($ref_com != $produit['ref_com']){
+
+                        	$ref_com = $produit['ref_com'];
+                        	?>
+                        	<h4 class="text-danger"><?= $date_produit ?></h4>
+                        	<?php
+                        }
+					
                         
-                    
-                    
-
- ?>
+                    ?>
 
 
-            <h4 class="text-danger"><?= $produit["date_commande"]; ?></h4>
+            
 
-            <h5 class="text-info"><?= $produit["nom_produit"]; ?></h5>
+            <h5 class="text-info"><?= $nom_produit ?></h5>
 
-            <h5 class="text-info"><?= $produit["total"]; ?></h5>
+            <h5 class="text-info"><?= $total ?>€</h5>
 
-            <h5 class="text-info"><?= $produit["id_produit"]; ?></h5>
+            <h5 class="text-info"><?= $panierproduit ?></h5>
 <?php
                     }
  ?>
